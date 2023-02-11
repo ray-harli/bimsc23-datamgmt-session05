@@ -1,19 +1,46 @@
-<template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
-</template>
+<!-- // Script is in some way equivalent to script.js. This is place
+to define variables, methods and imports of other Vue compoennts. -->
+<script setup>
+// Import other Vue components in order to add them to a template.
+//import blabla from './components/bla.vue'
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
+// Imports from packages
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+// Understanding ref article: https://blog.logrocket.com/understanding-vue-refs/#:~:text=Ref%20s%20are%20Vue.,element%20in%20your%20Vue%20instance.
+// When ref attribute is added to element, this element then can be referenced
+// in template. It is sort of templatecement of getElementById (but better)
+import { ref } from "vue";
+
+// Define variables and constants
+var count = ref(0)
+
+// Define functions
+function increment() 
+{
+  count.value++
+  console.log(`Value is: ${count.value}.`)
 }
 </script>
 
+<!-- Template is a HTML-based syntax that allows you to bind the rendered DOM elements
+with data, objects, functions etc. -->
+<template>
+  <div id="top-bar">
+    <div id="title-container">
+      <img class="logo-image" alt="Iaac logo" src="./assets/iaac-white.png" />
+      <h2 class="project-title">
+        Digital Tools for Cloud-based Data Management
+      </h2>
+    </div>
+  </div>
+
+  <div id="content">
+    <!-- Button something -->
+    <button @click="increment">Count is: {{ count }}</button>
+  </div>
+</template>
+
+<!-- Style is for CSS styling -->
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -21,6 +48,37 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+#top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+#title-container {
+  display: flex;
+  align-items: center;
+  color: white;
+  margin-right: 1.5rem;
+}
+
+#content {
+  display: flex;
+}
+
+.logo-image {
+  height: 3.25rem;
+  padding: 0.5rem;
+}
+
+.project-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: -0.05em;
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: -0.05em;
 }
 </style>
