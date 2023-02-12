@@ -28,7 +28,7 @@ with data, objects, functions etc. -->
   <div id="top-bar">
     <div id="title-container">
       <img class="logo-image" alt="Iaac logo" src="./assets/iaac-white.png" />
-      <h2 class="project-title">
+      <h2>
         Digital Tools for Cloud-based Data Management
       </h2>
     </div>
@@ -73,12 +73,12 @@ with data, objects, functions etc. -->
   padding: 0.5rem;
 }
 
-.project-title {
+h2 {
   font-size: 1.125rem;
   font-weight: 600;
   letter-spacing: -0.05em;
   font-size: 1.125rem;
   font-weight: 600;
-  letter-spacing: -0.05em;
+  letter-spacing: 0.01em;
 }
 </style>

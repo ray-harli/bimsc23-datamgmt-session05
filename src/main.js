@@ -6,5 +6,8 @@ import { createApp } from 'vue'
 // Import of the App.vue file
 import App from './App.vue'
 
+// Import styles
+// import './styles/button-styles.css'
+
 // Create Vue appliction with App.vue component and inject it into element with id 'app'
 createApp(App).mount('#app')
