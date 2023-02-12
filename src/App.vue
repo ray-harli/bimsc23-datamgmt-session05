@@ -2,7 +2,7 @@
 to define variables, methods and imports of other Vue compoennts. -->
 <script setup>
 // Import other Vue components in order to add them to a template.
-//import blabla from './components/bla.vue'
+import SliderInput from './components/SliderInput.vue'
 
 // Imports from packages
 
@@ -13,12 +13,17 @@ import { ref } from "vue";
 
 // Define variables and constants
 var count = ref(0)
+var firstSlider = ref(0)
 
 // Define functions
 function increment() 
 {
   count.value++
   console.log(`Value is: ${count.value}.`)
+}
+
+function updateValue(newValue) {
+  firstSlider.value = newValue
 }
 </script>
 
@@ -35,9 +40,18 @@ with data, objects, functions etc. -->
   </div>
 
   <div id="content">
-    <!-- Button something -->
-    <button @click="increment">Count is: {{ count }}</button>
+    <!-- First example -> button -->
+    <!-- <button @click="increment">Add one more</button>
+    <p>Count is: {{  count }}</p> -->
+
+    <!-- This is where another Vue component is injected into template. -->
+    <SliderInput 
+    title="Height" v-bind:min="0" v-bind:max="50" v-bind:step="10"
+    @updateValue="updateValue"/>
+
   </div>
+
+  <h2> Value received in App.vue: {{  firstSlider }}</h2>
 </template>
 
 <!-- Style is for CSS styling -->
@@ -46,7 +60,7 @@ with data, objects, functions etc. -->
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+
   color: #2c3e50;
 }
 
