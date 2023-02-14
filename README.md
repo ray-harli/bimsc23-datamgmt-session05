@@ -24,7 +24,7 @@ https://marketplace.visualstudio.com/items?itemName=Vue.volar
 
 ### Install all necesary dependencies for the project
 ```
-npm run serve
+npm run i
 ```
 
 ### Compiles and hot-reloads for development
