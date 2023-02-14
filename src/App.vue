@@ -3,7 +3,7 @@ to define variables, methods and imports of other Vue compoennts. -->
 <script setup>
 // Import other Vue components in order to add them to a template.
 import SliderInput from './components/SliderInput.vue'
-
+import ToggleInput from './components/ToggleInput.vue'
 // Imports from packages
 
 // Understanding ref article: https://blog.logrocket.com/understanding-vue-refs/#:~:text=Ref%20s%20are%20Vue.,element%20in%20your%20Vue%20instance.
@@ -14,6 +14,7 @@ import { ref } from "vue";
 // Define variables and constants
 var count = ref(0)
 var firstSlider = ref(0)
+var runToggle = ref(false)
 
 // Define functions
 function increment() 
@@ -22,8 +23,17 @@ function increment()
   console.log(`Value is: ${count.value}.`)
 }
 
-function updateValue(newValue) {
-  firstSlider.value = newValue
+function updateValue(newValue, parameterName) {
+
+  if (parameterName === 'Height')
+  {
+    firstSlider.value = newValue
+  }
+
+}
+
+function updateToggle(newValue) {
+  runToggle.value = newValue
 }
 </script>
 
@@ -45,13 +55,20 @@ with data, objects, functions etc. -->
     <p>Count is: {{  count }}</p> -->
 
     <!-- This is where another Vue component is injected into template. -->
-    <SliderInput 
+    <div>
+      <SliderInput 
     title="Height" v-bind:min="0" v-bind:max="50" v-bind:step="10"
-    @updateValue="updateValue"/>
+    v-on:updateValue="updateValue"/>
+
+    <ToggleInput title="Run?"
+    v-on:updateValue="updateToggle"></ToggleInput>
+    </div>
+
 
   </div>
 
   <h2> Value received in App.vue: {{  firstSlider }}</h2>
+  <h2> Value received in App.vue: {{  runToggle }}</h2>
 </template>
 
 <!-- Style is for CSS styling -->

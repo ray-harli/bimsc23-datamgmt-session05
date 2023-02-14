@@ -3,23 +3,31 @@ import { ref } from "vue";
 // Define properties that you will be able to access from parent component. 
 // Those properties will be binded from parent to child. 
 // Available JavaScript types: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures
-defineProps(['title', 'min', 'max', 'step'])
+const props = defineProps(['title', 'min', 'max', 'step'])
 
+const titlec = ref(props.title)
 // Define events that will be accessible from parent component
 const emits = defineEmits(['updateValue'])
 
-var value = ref(0)
+var sliderValue = ref(0)
+
+function sendValueUpate()
+{
+  emits('updateValue', sliderValue.value, titlec.value)
+}
+
 
 </script>
 
 <template>
 <div>
 	<form class="definition-input">
-			<label class="input-title" for="range-slider">{{ title }}: {{ value }}</label>
+			<label class="input-title" for="range-slider">{{ title }}: {{ sliderValue }}</label>
 
 			<input type="range" class="modern-range"
 			v-bind:min="min" v-bind:max="max" v-bind:step="step"
-			v-model="value" @input="emits('updateValue', value)"
+			v-model="sliderValue" 
+      v-on:input="sendValueUpate"
 			/>
 	</form>
 </div>
@@ -28,24 +36,11 @@ var value = ref(0)
 </template>
 
 <style scoped>
-.definition-input {
-    padding: 20px;
-		width: 300px;
-}
-
-.input-title {
-  font-family: 'Roboto Mono', monospace;
-  font-size: 1.2rem;
-  text-align: left;
-  color: #333;
-  margin-bottom: 1rem;
-}
-
 .modern-range {
   -webkit-appearance: none;
   width: 100%;
-  background: lightgrey;
-  height: 15px;
+  background: linear-gradient(90deg, #f19af3, #f099b5);
+  height: 17px;
   border-radius: 15px;
   margin: 10px 0px;
 }
@@ -58,6 +53,4 @@ var value = ref(0)
   background-color: black;
   cursor: pointer;
 }
-
-
 </style>
