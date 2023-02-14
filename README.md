@@ -33,3 +33,9 @@ npm run i
 npm run serve
 ```
 
+
+## References:
+* Vue.js official guide: https://vuejs.org/guide/introduction.html
+* Vue.js tutorial: https://vuejs.org/tutorial/#step-1ml
+* About reactivity https://blog.logrocket.com/understanding-vue-refs/#:~:text=Ref%20s%20are%20Vue.,element%20in%20your%20Vue%20instance.
+
