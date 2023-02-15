@@ -4,6 +4,9 @@ to define variables, methods and imports of other Vue compoennts. -->
 // Import other Vue components in order to add them to a template.
 import SliderInput from './components/SliderInput.vue'
 import ToggleInput from './components/ToggleInput.vue'
+import GeometryView from './components/GeometryView.vue'
+
+
 // Imports from packages
 
 // Understanding ref article: https://blog.logrocket.com/understanding-vue-refs/#:~:text=Ref%20s%20are%20Vue.,element%20in%20your%20Vue%20instance.
@@ -13,8 +16,9 @@ import { ref } from "vue";
 
 // Define variables and constants
 var count = ref(0)
-var firstSlider = ref(0)
+var firstSlider = ref(25)
 var runToggle = ref(false)
+
 
 // Define functions
 function increment() 
@@ -28,12 +32,16 @@ function updateValue(newValue, parameterName) {
   if (parameterName === 'Height')
   {
     firstSlider.value = newValue
+
+  
   }
+  
 
 }
 
 function updateToggle(newValue) {
   runToggle.value = newValue
+
 }
 </script>
 
@@ -57,7 +65,7 @@ with data, objects, functions etc. -->
     <!-- This is where another Vue component is injected into template. -->
     <div>
       <SliderInput 
-    title="Height" v-bind:min="0" v-bind:max="50" v-bind:step="10"
+    title="Height" v-bind:min="1" v-bind:max="50" v-bind:step="1" 
     v-on:updateValue="updateValue"/>
 
     <ToggleInput title="Run?"
@@ -69,6 +77,17 @@ with data, objects, functions etc. -->
 
   <h2> Value received in App.vue: {{  firstSlider }}</h2>
   <h2> Value received in App.vue: {{  runToggle }}</h2>
+  <div >
+
+
+      <GeometryView :size="firstSlider" />
+
+      <!-- uncomment to add another geometryview -->
+      <!-- <GeometryView :size="firstSlider"/> -->
+
+  </div>
+
+
 </template>
 
 <!-- Style is for CSS styling -->
@@ -99,10 +118,12 @@ with data, objects, functions etc. -->
   display: flex;
 }
 
+
 .logo-image {
   height: 3.25rem;
   padding: 0.5rem;
 }
+
 
 h2 {
   font-size: 1.125rem;
@@ -112,4 +133,6 @@ h2 {
   font-weight: 600;
   letter-spacing: 0.01em;
 }
+
+
 </style>
