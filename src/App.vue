@@ -2,10 +2,9 @@
 to define variables, methods and imports of other Vue compoennts. -->
 <script setup>
 // Import other Vue components in order to add them to a template.
-import SliderInput from './components/SliderInput.vue'
-import ToggleInput from './components/ToggleInput.vue'
-import GeometryView from './components/GeometryView.vue'
-
+import SliderInput from "./components/SliderInput.vue";
+import ToggleInput from "./components/ToggleInput.vue";
+import GeometryView from "./components/GeometryView.vue";
 
 // Imports from packages
 
@@ -15,33 +14,24 @@ import GeometryView from './components/GeometryView.vue'
 import { ref } from "vue";
 
 // Define variables and constants
-var count = ref(0)
-var firstSlider = ref(25)
-var runToggle = ref(false)
-
+var count = ref(0);
+var firstSlider = ref(25);
+var runToggle = ref(false);
 
 // Define functions
-function increment() 
-{
-  count.value++
-  console.log(`Value is: ${count.value}.`)
+function increment() {
+  count.value++;
+  //console.log(`Value is: ${count.value}.`);
 }
 
 function updateValue(newValue, parameterName) {
-
-  if (parameterName === 'Height')
-  {
-    firstSlider.value = newValue
-
-  
+  if (parameterName === "Height") {
+    firstSlider.value = newValue;
   }
-  
-
 }
 
 function updateToggle(newValue) {
-  runToggle.value = newValue
-
+  runToggle.value = newValue;
 }
 </script>
 
@@ -51,9 +41,7 @@ with data, objects, functions etc. -->
   <div id="top-bar">
     <div id="title-container">
       <img class="logo-image" alt="Iaac logo" src="./assets/iaac-white.png" />
-      <h2>
-        Digital Tools for Cloud-based Data Management
-      </h2>
+      <h2>Digital Tools for Cloud-based Data Management</h2>
     </div>
   </div>
 
@@ -62,32 +50,26 @@ with data, objects, functions etc. -->
     <!-- <button @click="increment">Add one more</button>
     <p>Count is: {{  count }}</p> -->
 
-    <!-- This is where another Vue component is injected into template. -->
     <div>
-      <SliderInput 
-    title="Height" v-bind:min="1" v-bind:max="50" v-bind:step="1" 
-    v-on:updateValue="updateValue"/>
+      <!-- Vue component injected into App.vue component template.
+      That makes it App.vue a parent and SliderInput.vue a child. -->
+      <SliderInput title="Height"
+        v-bind:min="1" v-bind:max="50" v-bind:step="1"
+        v-on:updateValue="updateValue"/>
 
-    <ToggleInput title="Run?"
-    v-on:updateValue="updateToggle"></ToggleInput>
+      <ToggleInput title="Run?" v-on:updateValue="updateToggle"></ToggleInput>
+
+      <h2>Value received in App.vue: {{ firstSlider }}</h2>
+      <h2>Value received in App.vue: {{ runToggle }}</h2>
     </div>
 
-
-  </div>
-
-  <h2> Value received in App.vue: {{  firstSlider }}</h2>
-  <h2> Value received in App.vue: {{  runToggle }}</h2>
-  <div >
-
-
+    <div id="content">
       <GeometryView :size="firstSlider" />
 
       <!-- uncomment to add another geometryview -->
       <!-- <GeometryView :size="firstSlider"/> -->
-
+    </div>
   </div>
-
-
 </template>
 
 <!-- Style is for CSS styling -->
@@ -118,12 +100,10 @@ with data, objects, functions etc. -->
   display: flex;
 }
 
-
 .logo-image {
   height: 3.25rem;
   padding: 0.5rem;
 }
-
 
 h2 {
   font-size: 1.125rem;
@@ -133,6 +113,4 @@ h2 {
   font-weight: 600;
   letter-spacing: 0.01em;
 }
-
-
 </style>
