@@ -13,7 +13,7 @@ var toggleValue = ref(false)
 // Define functions
 function sendToggleUpdate() {
     emits('updateValue', toggleValue.value)
-    //console.log(toggleValue)
+    //console.log(`from child component ${toggleValue.value}`)
 }
 </script>
 
@@ -26,7 +26,7 @@ function sendToggleUpdate() {
         <label class="switch" for="checkbox">
             <input type="checkbox" id="checkbox" 
             v-model="toggleValue" 
-            v-on:input="sendToggleUpdate"/>
+            v-on:change="sendToggleUpdate"/>
 
             <div class="slider round"></div>
         </label>
