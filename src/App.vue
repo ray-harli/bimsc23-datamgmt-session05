@@ -46,29 +46,10 @@ with data, objects, functions etc. -->
   </div>
 
   <div id="content">
-    <!-- First example -> button -->
-    <!-- <button @click="increment">Add one more</button>
+    <!-- First example - button -->
+    <button @click="increment">Add one more</button>
     <p>Count is: {{  count }}</p> -->
 
-    <div>
-      <!-- Vue component injected into App.vue component template.
-      That makes it App.vue a parent and SliderInput.vue a child. -->
-      <SliderInput title="Height"
-        v-bind:min="1" v-bind:max="50" v-bind:step="1"
-        v-on:updateValue="updateValue"/>
-
-      <ToggleInput title="Run?" v-on:updateValue="updateToggle"></ToggleInput>
-
-      <h2>Value received in App.vue: {{ firstSlider }}</h2>
-      <h2>Value received in App.vue: {{ runToggle }}</h2>
-    </div>
-
-    <div id="content">
-      <GeometryView :size="firstSlider" />
-
-      <!-- uncomment to add another geometryview -->
-      <!-- <GeometryView :size="firstSlider"/> -->
-    </div>
   </div>
 </template>
 
