@@ -1,11 +1,6 @@
 <!-- // Script is in some way equivalent to script.js. This is place
 to define variables, methods and imports of other Vue compoennts. -->
 <script setup>
-// Import other Vue components in order to add them to a template.
-import SliderInput from "./components/SliderInput.vue";
-import ToggleInput from "./components/ToggleInput.vue";
-import GeometryView from "./components/GeometryView.vue";
-
 // Imports from packages
 
 // Understanding ref article: https://blog.logrocket.com/understanding-vue-refs/#:~:text=Ref%20s%20are%20Vue.,element%20in%20your%20Vue%20instance.
@@ -15,8 +10,6 @@ import { ref } from "vue";
 
 // Define variables and constants
 var count = ref(0);
-var firstSlider = ref(25);
-var runToggle = ref(false);
 
 // Define functions
 function increment() {
@@ -24,15 +17,6 @@ function increment() {
   //console.log(`Value is: ${count.value}.`);
 }
 
-function updateValue(newValue, parameterName) {
-  if (parameterName === "Height") {
-    firstSlider.value = newValue;
-  }
-}
-
-function updateToggle(newValue) {
-  runToggle.value = newValue;
-}
 </script>
 
 <!-- Template is a HTML-based syntax that allows you to bind the rendered DOM elements
@@ -48,7 +32,7 @@ with data, objects, functions etc. -->
   <div id="content">
     <!-- First example - button -->
     <button @click="increment">Add one more</button>
-    <p>Count is: {{  count }}</p> -->
+    <p>Count is: {{  count }}</p>
 
   </div>
 </template>
