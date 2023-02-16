@@ -2,22 +2,19 @@
   <div id="viewport" class="flex flex-col p-4">
     <div id="threejs-container" class="py-5"></div>
   </div>
-
 </template>
 
 <script setup>
 // Imports;
-import { onMounted, onUpdated, computed } from 'vue'
+import { onMounted, onUpdated } from "vue";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
-// 
-const props = defineProps(['size'])
-
-
+// Property coming from parent component
+const props = defineProps(["size"]);
 
 // Three js objects
-let renderer, camera, scene ,  controls, geometry;
+let renderer, camera, scene, controls, geometry;
 
 let width = 600;
 let heigh = 700;
@@ -41,9 +38,8 @@ function init() {
   controls = new OrbitControls(camera, renderer.domElement);
 
   // add fun shape
-  createBox(25,25,25)
+  createBox(25, 25, 25);
   animate();
-
 }
 
 // for controls update
@@ -53,39 +49,30 @@ function animate() {
   renderer.render(scene, camera);
 }
 
-
-function createBox( l,w, h){
-
-    geometry = new THREE.BoxGeometry( l ,w, h );
-    const material = new THREE.MeshNormalMaterial()
-    const sphere = new THREE.Mesh( geometry, material );
-    scene.add( sphere );
-
+function createBox(l, w, h) {
+  geometry = new THREE.BoxGeometry(l, w, h);
+  const material = new THREE.MeshNormalMaterial();
+  const sphere = new THREE.Mesh(geometry, material);
+  scene.add(sphere);
 }
 
 function onSliderChange(color) {
-
-  scene.clear()
-  createBox( props.size, props.size,props.size );
-
+  scene.clear();
+  createBox(props.size, props.size, props.size);
 }
 
-
-
+// This function runs at the beginning of the component lifecycle.
+// More about Vue lifecycles: https://vuejs.org/guide/essentials/lifecycle.html#lifecycle-diagram
 onMounted(() => {
-  init()
-  animate()
-})
+  init();
+  animate();
+});
 
-
-
+// This function runs when DOM updates.
 onUpdated(() => {
   // text content should be the same as current `count.value`
-  onSliderChange()
-})
-
-
-
+  onSliderChange();
+});
 </script>
 
 <style scoped>
@@ -98,6 +85,6 @@ onUpdated(() => {
   height: calc(100vh - 105px);
   width: 600px;
   min-width: 200px;
-  position:inherit;
+  position: inherit;
 }
 </style>
