@@ -63,12 +63,7 @@ with data, objects, functions etc. -->
       <h2>Value received in App.vue: {{ runToggle }}</h2>
     </div>
 
-    <div id="content">
-      <GeometryView :size="firstSlider" />
 
-      <!-- uncomment to add another geometryview -->
-      <!-- <GeometryView :size="firstSlider"/> -->
-    </div>
   </div>
 </template>
 
