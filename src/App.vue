@@ -2,26 +2,29 @@
 to define variables, methods and imports of other Vue compoennts. -->
 <script setup>
 // Imports from packages
-
-// Understanding ref article: https://blog.logrocket.com/understanding-vue-refs/#:~:text=Ref%20s%20are%20Vue.,element%20in%20your%20Vue%20instance.
-// When ref attribute is added to element, this element then can be referenced
-// in template. It is sort of templatecement of getElementById (but better)
+import ButtonCount from './components/ButtonCount.vue'
 import { ref } from "vue";
 
-// Define variables and constants
-var count = ref(0);
+var button1 = "Height"
+var button2 = "Width"
+var button3 = "Length"
 
-// Define functions
-function increment() {
-  count.value++;
-  //console.log(`Value is: ${count.value}.`);
+var totalCount= ref(0)
+
+function bringCount(countFromChild){
+
+  totalCount.value += countFromChild
+  console.log(totalCount.value)
+
 }
+
 
 </script>
 
 <!-- Template is a HTML-based syntax that allows you to bind the rendered DOM elements
 with data, objects, functions etc. -->
 <template>
+
   <div id="top-bar">
     <div id="title-container">
       <img class="logo-image" alt="Iaac logo" src="./assets/iaac-white.png" />
@@ -29,12 +32,21 @@ with data, objects, functions etc. -->
     </div>
   </div>
 
-  <div id="content">
-    <!-- First example - button -->
-    <button @click="increment">Add one more</button>
-    <p>Count is: {{  count }}</p>
+  <div>
+
+    <ButtonCount v-bind:title = "button1"  v-on:updateCount="bringCount"/>
+
+    <ButtonCount v-bind:title = "button2"  v-on:updateCount="bringCount"/>
+    
+    <ButtonCount v-bind:title = "button3"  v-on:updateCount="bringCount"/>
+
 
   </div>
+
+  <div>
+    <p> Total Count of sliders is {{ totalCount }}</p>
+  </div>
+
 </template>
 
 <!-- Style is for CSS styling -->
