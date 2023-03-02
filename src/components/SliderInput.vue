@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
 // Define properties that you will be able to access from parent component. 
-// Those properties will be binded from parent to child. 
+// Those properties will be binded from parent to child..
 // Available JavaScript types: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures
 const props = defineProps(['title', 'min', 'max', 'step'])
 
